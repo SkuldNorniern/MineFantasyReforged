@@ -1,12 +1,5 @@
-{
-    "forge_marker": 1,
-    "defaults": {
-        "textures": {
-            "all": "minefantasyreforged:blocks/refined_planks"
-        },
-        "model": "cube_all"
-    },
-    "variants": {
-        "normal": [{}]
-    }
+﻿{
+  "variants": {
+    "": { "model": "minefantasyreforged:block/refined_planks" }
+  }
 }

@@ -1,11 +1,5 @@
-{
-    "forge_marker": 1,
-    "defaults": {
-        "transform": "forge:default-block",
-        "model": "minefantasyreforged:bomb_bench",
-        "textures": {"texture": "minefantasyreforged:blocks/bomb_bench"}
-    },
-    "variants": {
-        "normal": [{}]
-    }
+﻿{
+  "variants": {
+    "": { "model": "minefantasyreforged:block/bomb_bench" }
+  }
 }

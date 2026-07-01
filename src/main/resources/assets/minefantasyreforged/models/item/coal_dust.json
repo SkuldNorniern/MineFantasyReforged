@@ -1,6 +1,6 @@
 ﻿{
-    "parent": "item/generated",
-    "textures": {
-        "layer0": "minefantasyreforged:items/coal_dust"
-    }
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "minefantasyreforged:item/coal_dust"
+  }
 }

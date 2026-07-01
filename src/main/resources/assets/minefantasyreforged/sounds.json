@@ -1,17 +1,17 @@
-{
-  "weapon.bombBounce": {
+﻿{
+  "weapon.bombbounce": {
     "category": "neutral",
     "sounds": [
       "minefantasyreforged:weapon/bomb_bounce"
     ]
   },
-  "weapon.bowFire": {
+  "weapon.bowfire": {
     "category": "neutral",
     "sounds": [
       "minefantasyreforged:weapon/bow_fire"
     ]
   },
-  "weapon.arrowHit": {
+  "weapon.arrowhit": {
     "category": "neutral",
     "sounds": [
       "minefantasyreforged:weapon/arrow_hit"
@@ -145,13 +145,13 @@
       "minefantasyreforged:process/carpenter/twist_bolt_1"
     ]
   },
-  "updateResearch": {
+  "updateresearch": {
     "category": "player",
     "sounds": [
       "minefantasyreforged:process/research/update_research"
     ]
   },
-  "block.flipPage": {
+  "block.flippage": {
     "category": "neutral",
     "sounds": [
       "minefantasyreforged:process/research/flip_page_1",

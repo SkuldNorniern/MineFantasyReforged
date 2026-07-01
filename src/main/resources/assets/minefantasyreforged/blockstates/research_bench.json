@@ -1,15 +1,5 @@
-{
-    "forge_marker": 1,
-    "defaults": {
-        "transform": "forge:default-block",
-        "model": "minefantasyreforged:research_bench",
-        "textures": {"texture": "minefantasyreforged:blocks/research_bench"}
-    },
-    "variants": {
-        "normal": [{}],
-        "facing=north": { "y": 0 },
-        "facing=south": { "y": 180 },
-        "facing=west":  { "y": 270 },
-        "facing=east":  { "y": 90 }
-    }
+﻿{
+  "variants": {
+    "": { "model": "minefantasyreforged:block/research_bench" }
+  }
 }

@@ -1,23 +1,5 @@
-{
-    "forge_marker": 1,
-    "defaults": {
-        "model": "cube_bottom_top",
-        "textures": {
-            "bottom": "minefantasyreforged:blocks/ebony_log_top",
-            "top": "minefantasyreforged:blocks/ebony_log_top",
-            "side": "minefantasyreforged:blocks/ebony_log_side"
-        },
-        "transform": "forge:default-block"
-    },
-    "variants": {
-        "normal": [{}],
-        "axis=y,tree_base=true"     : {"model": "cube_bottom_top"},
-        "axis=y,tree_base=false"    : {"model": "cube_bottom_top"},
-        "axis=z,tree_base=true"     : {"model": "cube_bottom_top","x": 90},
-        "axis=z,tree_base=false"    : {"model": "cube_bottom_top","x": 90},
-        "axis=x,tree_base=true"     : {"model": "cube_bottom_top","x": 90, "y": 90},
-        "axis=x,tree_base=false"    : {"model": "cube_bottom_top","x": 90, "y": 90},
-        "axis=none,tree_base=true"  : {"model": "cube_bottom_top"},
-        "axis=none,tree_base=false" : {"model": "cube_bottom_top"}
-    }
+﻿{
+  "variants": {
+    "": { "model": "minefantasyreforged:block/log_ebony" }
+  }
 }

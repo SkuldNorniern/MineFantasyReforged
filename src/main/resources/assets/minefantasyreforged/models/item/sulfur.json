@@ -1,6 +1,6 @@
 ﻿{
-    "parent": "item/generated",
-    "textures": {
-        "layer0": "minefantasyreforged:items/sulfur"
-    }
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "minefantasyreforged:item/sulfur"
+  }
 }

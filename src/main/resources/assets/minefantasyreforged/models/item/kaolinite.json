@@ -1,6 +1,6 @@
 ﻿{
-    "parent": "item/generated",
-    "textures": {
-        "layer0": "minefantasyreforged:items/kaolinite"
-    }
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "minefantasyreforged:item/kaolinite"
+  }
 }

@@ -1,12 +1,5 @@
-{
-    "forge_marker": 1,
-    "defaults": {
-        "textures": {
-            "all": "minefantasyreforged:blocks/ironbark_planks"
-        },
-        "model": "cube_all"
-    },
-    "variants": {
-        "normal": [{}]
-    }
+﻿{
+  "variants": {
+    "": { "model": "minefantasyreforged:block/ironbark_planks" }
+  }
 }
