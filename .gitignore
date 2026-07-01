@@ -1,27 +1,29 @@
-# eclipse
+# IDE
 bin
 *.launch
 .settings
 .metadata
 .classpath
 .project
-
-# idea
 out
 *.ipr
 *.iws
 *.iml
 .idea
 
-# gradle
+# Gradle
 build
 classes
 .gradle
-
-# other
-eclipse
-run
 gradle.build.forge
 gradle.build.ori
 
+# Run dirs
+/run
 /eclipse
+
+# Generated resources
+src/generated/resources/.cache
+
+# Repo publish dir
+repo
