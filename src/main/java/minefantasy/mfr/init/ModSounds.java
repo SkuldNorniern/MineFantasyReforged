@@ -1,7 +1,7 @@
 package minefantasy.mfr.init;
 
 import minefantasy.mfr.MineFantasyReforged;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.sounds.SoundEvent;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -12,10 +12,9 @@ public class ModSounds {
 
     private static DeferredHolder<SoundEvent, SoundEvent> register(String name) {
         return SOUNDS.register(name, () -> SoundEvent.createVariableRangeEvent(
-                ResourceLocation.fromNamespaceAndPath(MineFantasyReforged.MOD_ID, name)));
+                Identifier.fromNamespaceAndPath(MineFantasyReforged.MOD_ID, name)));
     }
 
-    // Port sound registrations from legacy MineFantasySounds.java
     public static final DeferredHolder<SoundEvent, SoundEvent> ANVIL_HAMMER = register("anvil.hammer");
     public static final DeferredHolder<SoundEvent, SoundEvent> FORGE_FIRE = register("forge.fire");
     public static final DeferredHolder<SoundEvent, SoundEvent> QUERN_GRIND = register("quern.grind");
