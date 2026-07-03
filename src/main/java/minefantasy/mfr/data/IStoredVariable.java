@@ -15,6 +15,7 @@ import net.minecraft.nbt.Tag;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import minefantasy.mfr.api.tool.TransformationBlockWrapper;
 
 import java.util.UUID;
 import java.util.function.BiFunction;
@@ -147,6 +148,10 @@ public interface IStoredVariable<T> extends IVariable<T> {
 
 		public static StoredVariable<CompoundTag, CompoundTag> ofNBT(String key, Persistence persistence) {
 			return new StoredVariable<>(key, t -> t, t -> t, persistence);
+		}
+
+		public static StoredVariable<TransformationBlockWrapper, CompoundTag> ofTransformationBlockWrapper(String key, Persistence persistence) {
+			return new StoredVariable<>(key, TransformationBlockWrapper::serializeNBT, TransformationBlockWrapper::deserializeNBT, persistence);
 		}
 	}
 }
