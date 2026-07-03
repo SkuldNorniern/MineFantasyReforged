@@ -1,0 +1,69 @@
+package minefantasy.mfr.api.tool;
+
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtUtils;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.state.BlockState;
+
+public class TransformationBlockWrapper {
+	private ItemStack tool;
+	private BlockPos pos;
+	private BlockState state;
+	private Integer progress;
+	private Integer maxProgress;
+	private String displayName;
+
+	public TransformationBlockWrapper(ItemStack tool, BlockPos pos, BlockState state, int progress, int maxProgress, String displayName) {
+		this.tool = tool;
+		this.pos = pos;
+		this.state = state;
+		this.progress = progress;
+		this.maxProgress = maxProgress;
+		this.displayName = displayName;
+	}
+
+	public int getProgressMetre(double i) {
+		return (int) Math.ceil(i / this.maxProgress * this.progress);
+	}
+
+	public CompoundTag serializeNBT() {
+		CompoundTag nbt = new CompoundTag();
+		nbt.put("pos", NbtUtils.writeBlockPos(this.pos));
+		nbt.put("state", NbtUtils.writeBlockState(this.state));
+		// TODO: ItemStack serialization requires HolderLookup.Provider in MC 1.20.5+
+		nbt.put("tool", new CompoundTag());
+		nbt.putInt("progress", this.progress);
+		nbt.putInt("maxProgress", this.maxProgress);
+		nbt.putString("displayName", this.displayName);
+		return nbt;
+	}
+
+	public static TransformationBlockWrapper deserializeNBT(CompoundTag nbt) {
+		// TODO: ItemStack and BlockState deserialization require HolderLookup.Provider in MC 1.20.5+
+		ItemStack tagTool = ItemStack.EMPTY;
+		BlockPos tagPos = NbtUtils.readBlockPos(nbt.getCompound("pos"));
+		BlockState tagState = NbtUtils.readBlockState(nbt.getCompound("state"));
+		int tagProgress = nbt.getInt("progress");
+		int tagMaxProgress = nbt.getInt("maxProgress");
+		String tagDisplayName = nbt.getString("displayName");
+		return new TransformationBlockWrapper(tagTool, tagPos, tagState, tagProgress, tagMaxProgress, tagDisplayName);
+	}
+
+	public static boolean checkTransformationBlock(TransformationBlockWrapper transformationBlock, BlockState state, BlockPos pos) {
+		return transformationBlock.getState() == state && transformationBlock.getPos().equals(pos);
+	}
+
+	public ItemStack getTool() { return tool; }
+	public void setTool(ItemStack tool) { this.tool = tool; }
+	public BlockPos getPos() { return pos; }
+	public void setPos(BlockPos pos) { this.pos = pos; }
+	public BlockState getState() { return state; }
+	public void setState(BlockState state) { this.state = state; }
+	public Integer getProgress() { return progress; }
+	public void setProgress(Integer progress) { this.progress = progress; }
+	public Integer getMaxProgress() { return maxProgress; }
+	public void setMaxProgress(Integer maxProgress) { this.maxProgress = maxProgress; }
+	public String getDisplayName() { return displayName; }
+	public void setDisplayName(String displayName) { this.displayName = displayName; }
+}
