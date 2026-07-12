@@ -4,6 +4,7 @@ import com.mojang.logging.LogUtils;
 import minefantasy.mfr.config.MFRConfig;
 import minefantasy.mfr.init.ModBlockEntities;
 import minefantasy.mfr.init.ModBlocks;
+import minefantasy.mfr.init.ModAttachmentTypes;
 import minefantasy.mfr.init.ModCreativeTabs;
 import minefantasy.mfr.init.ModItems;
 import minefantasy.mfr.init.ModSounds;
@@ -27,6 +28,7 @@ public class MineFantasyReforged {
         ModBlockEntities.BLOCK_ENTITIES.register(modEventBus);
         ModSounds.SOUNDS.register(modEventBus);
         ModCreativeTabs.CREATIVE_TABS.register(modEventBus);
+        ModAttachmentTypes.ATTACHMENT_TYPES.register(modEventBus);
 
         modContainer.registerConfig(ModConfig.Type.SERVER, MFRConfig.SERVER_SPEC);
         modContainer.registerConfig(ModConfig.Type.CLIENT, MFRConfig.CLIENT_SPEC);
