@@ -2,6 +2,7 @@ package minefantasy.mfr.data;
 
 import minefantasy.mfr.MineFantasyReforged;
 import minefantasy.mfr.init.ModAttachmentTypes;
+import minefantasy.mfr.mechanics.RPGElements;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
@@ -103,7 +104,9 @@ public class PlayerData {
 	public static void onEntityJoinLevel(EntityJoinLevelEvent event) {
 		if (!event.getLevel().isClientSide() && event.getEntity() instanceof ServerPlayer player) {
 			PlayerData data = PlayerData.get(player);
-			// TODO: RPGElements.initSkills(data) when RPGElements is ported
+			if (RPGElements.isSystemActive) {
+				RPGElements.initSkills(data);
+			}
 			// TODO: ResearchLogic.syncData(player) when ResearchLogic is ported
 			data.sync();
 		}
