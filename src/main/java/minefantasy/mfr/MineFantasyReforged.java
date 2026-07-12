@@ -6,6 +6,7 @@ import minefantasy.mfr.init.ModBlockEntities;
 import minefantasy.mfr.init.ModBlocks;
 import minefantasy.mfr.init.ModAttachmentTypes;
 import minefantasy.mfr.init.ModCreativeTabs;
+import minefantasy.mfr.init.ModDataComponents;
 import minefantasy.mfr.init.ModItems;
 import minefantasy.mfr.init.ModSounds;
 import minefantasy.mfr.event.MFREventHandler;
@@ -29,6 +30,7 @@ public class MineFantasyReforged {
         ModSounds.SOUNDS.register(modEventBus);
         ModCreativeTabs.CREATIVE_TABS.register(modEventBus);
         ModAttachmentTypes.ATTACHMENT_TYPES.register(modEventBus);
+        ModDataComponents.DATA_COMPONENTS.register(modEventBus);
 
         modContainer.registerConfig(ModConfig.Type.SERVER, MFRConfig.SERVER_SPEC);
         modContainer.registerConfig(ModConfig.Type.CLIENT, MFRConfig.CLIENT_SPEC);
