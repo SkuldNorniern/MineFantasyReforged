@@ -9,6 +9,8 @@ public class ArmourDesign {
 	public static final String medium = "medium";
 	public static final String heavy = "heavy";
 
+	public static final ArmourDesign NONE = new ArmourDesign("none", "None", 0F, 0F, 0F, 0F)
+			.setWeightGroup(light);
 	public static final ArmourDesign CLOTH = new ArmourDesign("clothing", "Clothing", 1.0F, 1.0F, 0F, 0.25F)
 			.calibrateTraits(0.5F, 1.0F, 0.5F).setWeightGroup(light);
 	public static final ArmourDesign SOLID = new ArmourDesign("solid", "Basic", 1.0F, 1.0F, 60F, 1.00F)

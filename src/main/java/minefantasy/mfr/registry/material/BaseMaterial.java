@@ -3,9 +3,9 @@ package minefantasy.mfr.registry.material;
 import minefantasy.mfr.constants.MFRRarity;
 import minefantasy.mfr.util.MFRLogUtil;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
-import net.minecraft.world.item.Tier;
-import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.ToolMaterial;
 import net.minecraft.world.level.block.Block;
 
 import java.util.HashMap;
@@ -39,7 +39,7 @@ public class BaseMaterial {
 	public MFRRarity rarity;
 
 	private ArmorMaterialMFR armourConversion;
-	private Tier toolConversion;
+	private ToolMaterial toolConversion;
 
 	public BaseMaterial(String name, int tier, int durability, int harvestLevel, float hardness, float sharpness,
 			int enchantability, float weight, int lvl, MFRRarity rarity) {
@@ -129,7 +129,7 @@ public class BaseMaterial {
 		return materialMap.get(name.toLowerCase());
 	}
 
-	private Tier registerAsToolMaterial() {
+	private ToolMaterial registerAsToolMaterial() {
 		TagKey<Block> incorrectBlocks = switch (harvestLevel) {
 			case 0 -> BlockTags.INCORRECT_FOR_WOODEN_TOOL;
 			case 1 -> BlockTags.INCORRECT_FOR_STONE_TOOL;
@@ -137,22 +137,11 @@ public class BaseMaterial {
 			case 3 -> BlockTags.INCORRECT_FOR_DIAMOND_TOOL;
 			default -> BlockTags.INCORRECT_FOR_NETHERITE_TOOL;
 		};
-		final int uses = maxUses;
-		final float speed = 2.0F + (attackDamage * 2F);
-		final float damage = attackDamage;
-		final int enchant = enchantability;
-		final TagKey<Block> tag = incorrectBlocks;
-		return new Tier() {
-			@Override public int getUses() { return uses; }
-			@Override public float getSpeed() { return speed; }
-			@Override public float getAttackDamageBonus() { return damage; }
-			@Override public TagKey<Block> getIncorrectBlocksForDrops() { return tag; }
-			@Override public int getEnchantmentValue() { return enchant; }
-			@Override public Ingredient getRepairIngredient() { return Ingredient.EMPTY; }
-		};
+		float speed = 2.0F + (attackDamage * 2F);
+		return new ToolMaterial(incorrectBlocks, maxUses, speed, attackDamage, enchantability, ItemTags.WOODEN_TOOL_MATERIALS);
 	}
 
-	public Tier getToolMaterial() {
+	public ToolMaterial getToolMaterial() {
 		if (toolConversion == null) {
 			toolConversion = this.registerAsToolMaterial();
 		}

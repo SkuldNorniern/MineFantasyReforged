@@ -8,7 +8,7 @@ import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.TagParser;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.util.GsonHelper;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -45,7 +45,7 @@ public class JsonUtils {
 		CompoundTag tagCompound = null;
 		if (GsonHelper.isValidNode(obj, "nbt")) {
 			try {
-				tagCompound = TagParser.parseTag(GsonHelper.getAsString(obj, "nbt"));
+				tagCompound = TagParser.parseCompoundFully(GsonHelper.getAsString(obj, "nbt"));
 			} catch (CommandSyntaxException e) {
 				MineFantasyReforged.LOG.error("Error reading item stack nbt: {}", e.getMessage());
 			}
@@ -61,8 +61,8 @@ public class JsonUtils {
 	}
 
 	public static Item getItem(String registryName) {
-		ResourceLocation key = new ResourceLocation(registryName);
-		Item item = BuiltInRegistries.ITEM.get(key);
+		Identifier key = Identifier.parse(registryName);
+		Item item = BuiltInRegistries.ITEM.getValue(key);
 		if (item == null || !BuiltInRegistries.ITEM.containsKey(key)) {
 			throw new MissingResourceException("Unable to find item with registry name \"" + registryName + "\"",
 					Item.class.getName(), registryName);

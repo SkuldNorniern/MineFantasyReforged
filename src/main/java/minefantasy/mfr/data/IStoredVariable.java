@@ -1,6 +1,7 @@
 package minefantasy.mfr.data;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.UUIDUtil;
 import net.minecraft.nbt.ByteTag;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.DoubleTag;
@@ -8,7 +9,6 @@ import net.minecraft.nbt.FloatTag;
 import net.minecraft.nbt.IntArrayTag;
 import net.minecraft.nbt.IntTag;
 import net.minecraft.nbt.LongTag;
-import net.minecraft.nbt.NbtUtils;
 import net.minecraft.nbt.ShortTag;
 import net.minecraft.nbt.StringTag;
 import net.minecraft.nbt.Tag;
@@ -98,15 +98,15 @@ public interface IStoredVariable<T> extends IVariable<T> {
 		// Factory methods
 
 		public static StoredVariable<Byte, ByteTag> ofByte(String key, Persistence persistence) {
-			return new StoredVariable<>(key, ByteTag::valueOf, ByteTag::getAsByte, persistence);
+			return new StoredVariable<>(key, ByteTag::valueOf, ByteTag::byteValue, persistence);
 		}
 
 		public static StoredVariable<Boolean, ByteTag> ofBoolean(String key, Persistence persistence) {
-			return new StoredVariable<>(key, b -> ByteTag.valueOf(b), t -> t.getAsByte() == 1, persistence);
+			return new StoredVariable<>(key, b -> ByteTag.valueOf(b), t -> t.byteValue() == 1, persistence);
 		}
 
 		public static StoredVariable<Integer, IntTag> ofInt(String key, Persistence persistence) {
-			return new StoredVariable<>(key, IntTag::valueOf, IntTag::getAsInt, persistence);
+			return new StoredVariable<>(key, IntTag::valueOf, IntTag::intValue, persistence);
 		}
 
 		public static StoredVariable<int[], IntArrayTag> ofIntArray(String key, Persistence persistence) {
@@ -114,31 +114,31 @@ public interface IStoredVariable<T> extends IVariable<T> {
 		}
 
 		public static StoredVariable<Float, FloatTag> ofFloat(String key, Persistence persistence) {
-			return new StoredVariable<>(key, FloatTag::valueOf, FloatTag::getAsFloat, persistence);
+			return new StoredVariable<>(key, FloatTag::valueOf, FloatTag::floatValue, persistence);
 		}
 
 		public static StoredVariable<Double, DoubleTag> ofDouble(String key, Persistence persistence) {
-			return new StoredVariable<>(key, DoubleTag::valueOf, DoubleTag::getAsDouble, persistence);
+			return new StoredVariable<>(key, DoubleTag::valueOf, DoubleTag::doubleValue, persistence);
 		}
 
 		public static StoredVariable<Short, ShortTag> ofShort(String key, Persistence persistence) {
-			return new StoredVariable<>(key, ShortTag::valueOf, ShortTag::getAsShort, persistence);
+			return new StoredVariable<>(key, ShortTag::valueOf, ShortTag::shortValue, persistence);
 		}
 
 		public static StoredVariable<Long, LongTag> ofLong(String key, Persistence persistence) {
-			return new StoredVariable<>(key, LongTag::valueOf, LongTag::getAsLong, persistence);
+			return new StoredVariable<>(key, LongTag::valueOf, LongTag::longValue, persistence);
 		}
 
 		public static StoredVariable<String, StringTag> ofString(String key, Persistence persistence) {
-			return new StoredVariable<>(key, StringTag::valueOf, StringTag::getAsString, persistence);
+			return new StoredVariable<>(key, StringTag::valueOf, StringTag::value, persistence);
 		}
 
-		public static StoredVariable<BlockPos, CompoundTag> ofBlockPos(String key, Persistence persistence) {
-			return new StoredVariable<>(key, NbtUtils::writeBlockPos, NbtUtils::readBlockPos, persistence);
+		public static StoredVariable<BlockPos, LongTag> ofBlockPos(String key, Persistence persistence) {
+			return new StoredVariable<>(key, pos -> LongTag.valueOf(pos.asLong()), t -> BlockPos.of(t.longValue()), persistence);
 		}
 
 		public static StoredVariable<UUID, IntArrayTag> ofUUID(String key, Persistence persistence) {
-			return new StoredVariable<>(key, NbtUtils::createUUID, t -> NbtUtils.loadUUID(t), persistence);
+			return new StoredVariable<>(key, uuid -> new IntArrayTag(UUIDUtil.uuidToIntArray(uuid)), t -> UUIDUtil.uuidFromIntArray(t.getAsIntArray()), persistence);
 		}
 
 		/** ItemStack serialization requires HolderLookup.Provider — stub returns empty stack. */

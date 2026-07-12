@@ -2,14 +2,14 @@ package minefantasy.mfr.api.crafting;
 
 import minefantasy.mfr.constants.Tool;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 
 import java.util.HashMap;
 
 public class CustomCrafterEntry {
-	public static HashMap<ResourceLocation, CustomCrafterEntry> entries = new HashMap<>();
+	public static HashMap<Identifier, CustomCrafterEntry> entries = new HashMap<>();
 	public Item itemID;
 	public String type;
 	public float efficiency;
@@ -23,7 +23,7 @@ public class CustomCrafterEntry {
 	}
 
 	public static void registerItem(ItemStack piece, String type, float efficiency, int tier) {
-		ResourceLocation key = BuiltInRegistries.ITEM.getKey(piece.getItem());
+		Identifier key = BuiltInRegistries.ITEM.getKey(piece.getItem());
 		if (key != null) entries.put(key, new CustomCrafterEntry(piece.getItem(), type, efficiency, tier));
 	}
 
@@ -45,7 +45,7 @@ public class CustomCrafterEntry {
 
 	public static CustomCrafterEntry getEntry(ItemStack piece) {
 		if (piece != null) {
-			ResourceLocation key = BuiltInRegistries.ITEM.getKey(piece.getItem());
+			Identifier key = BuiltInRegistries.ITEM.getKey(piece.getItem());
 			if (key != null && entries.containsKey(key)) return entries.get(key);
 		}
 		return null;

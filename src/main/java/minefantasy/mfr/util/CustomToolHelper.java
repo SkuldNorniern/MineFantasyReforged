@@ -6,11 +6,11 @@ import minefantasy.mfr.api.crafting.IMaterialSingleComponent;
 import minefantasy.mfr.api.crafting.exotic.ISpecialDesign;
 import minefantasy.mfr.registry.material.CustomMaterial;
 import minefantasy.mfr.registry.material.CustomMaterialRegistry;
-import minefantasy.mfr.registry.material.MFRRarity;
+import minefantasy.mfr.constants.MFRRarity;
 import minefantasy.mfr.registry.material.types.CustomMaterialType;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.util.Mth;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -213,10 +213,10 @@ public class CustomToolHelper {
 	}
 
 	public static MFRRarity getRarity(ItemStack item, MFRRarity itemRarity) {
-		int lvl = itemRarity.getRarityValue();
+		int lvl = itemRarity.value;
 		CustomMaterial material = CustomMaterialRegistry.getMaterialFor(item, slot_main);
 		if (material != null) {
-			lvl = material.getRarity().getRarityValue();
+			lvl = material.getRarity().value;
 		}
 
 		if (item.isEnchanted()) {
@@ -228,7 +228,7 @@ public class CustomToolHelper {
 		if (lvl >= MFRRarity.values().length) {
 			lvl = MFRRarity.values().length - 1;
 		}
-		return MFRRarity.getRarityByValue(lvl);
+		return MFRRarity.fromValue(lvl);
 	}
 
 	public static int getMaxDamage(ItemStack stack, int dura) {
@@ -456,7 +456,8 @@ public class CustomToolHelper {
 	}
 
 	public static boolean doesMatchForRecipe(Ingredient ingredient, ItemStack inputItem) {
-		return Arrays.stream(ingredient.getItems())
+		return ingredient.items()
+				.map(holder -> new ItemStack(holder))
 				.anyMatch(itemStack -> doesMainMatchForRecipe(itemStack, inputItem) && doesHaftMatchForRecipe(itemStack, inputItem));
 	}
 
@@ -548,7 +549,7 @@ public class CustomToolHelper {
 	}
 
 	public static String getSimpleReferenceName(Item item, String dam) {
-		ResourceLocation key = BuiltInRegistries.ITEM.getKey(item);
+		Identifier key = BuiltInRegistries.ITEM.getKey(item);
 		if (key == null) {
 			return "";
 		}

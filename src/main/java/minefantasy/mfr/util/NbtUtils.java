@@ -45,7 +45,7 @@ public class NbtUtils {
 	 */
 	public static boolean deepContains(Tag toSearch, Tag searchFor) {
 		if (toSearch instanceof CompoundTag compound) {
-			for (String subKey : compound.getAllKeys()) {
+			for (String subKey : compound.keySet()) {
 				Tag subTag = compound.get(subKey);
 				if (subTag == searchFor || deepContains(subTag, searchFor)) return true;
 			}

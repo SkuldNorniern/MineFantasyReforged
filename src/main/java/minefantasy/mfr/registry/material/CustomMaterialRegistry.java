@@ -7,7 +7,6 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.CustomData;
-import net.minecraft.world.item.crafting.Ingredient;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
@@ -24,7 +23,7 @@ public class CustomMaterialRegistry {
 	public static HashMap<CustomMaterialType, ArrayList<CustomMaterial>> TYPE_LIST = new HashMap<>();
 
 	public static final CustomMaterial NONE = new CustomMaterial("none", CustomMaterialType.NONE,
-			Ingredient.EMPTY, new int[] {237, 237, 237},
+			null, new int[] {237, 237, 237},
 			0F, 0F, 0F, 0F, 0F, 0F, 0, MFRRarity.COMMON,
 			0, 0, null, null, null, null, false);
 
@@ -63,7 +62,7 @@ public class CustomMaterialRegistry {
 	public static void addMaterial(ItemStack item, String slot, String material) {
 		if (material == null || material.isEmpty()) return;
 		CompoundTag root = readRoot(item);
-		CompoundTag base = root.contains(NBT_BASE) ? root.getCompound(NBT_BASE) : new CompoundTag();
+		CompoundTag base = root.contains(NBT_BASE) ? root.getCompound(NBT_BASE).orElseGet(CompoundTag::new) : new CompoundTag();
 		base.putString(slot, material);
 		root.put(NBT_BASE, base);
 		item.set(DataComponents.CUSTOM_DATA, CustomData.of(root));
@@ -77,7 +76,7 @@ public class CustomMaterialRegistry {
 	public static CustomMaterial getMaterialFor(ItemStack item, String slot) {
 		CompoundTag base = readBase(item);
 		if (base != null && base.contains(slot)) {
-			return getMaterial(base.getString(slot));
+			return getMaterial(base.getString(slot).orElse(null));
 		}
 		return NONE;
 	}
@@ -98,7 +97,7 @@ public class CustomMaterialRegistry {
 		CustomData data = item.get(DataComponents.CUSTOM_DATA);
 		if (data == null) return null;
 		CompoundTag root = data.copyTag();
-		return root.contains(NBT_BASE) ? root.getCompound(NBT_BASE) : null;
+		return root.contains(NBT_BASE) ? root.getCompound(NBT_BASE).orElse(null) : null;
 	}
 
 	@OnlyIn(Dist.CLIENT)

@@ -1,11 +1,11 @@
 package minefantasy.mfr.util;
 
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class PlayerUtils {
@@ -19,7 +19,7 @@ public class PlayerUtils {
 	}
 
 	public static int getSlotFor(Player player, ItemStack stack) {
-		List<ItemStack> main = player.getInventory().items;
+		List<ItemStack> main = player.getInventory().getNonEquipmentItems();
 		for (int i = 0; i < main.size(); i++) {
 			if (!main.get(i).isEmpty() && areStackSameIgnoreNBT(stack, main.get(i))) {
 				return i;
@@ -29,17 +29,11 @@ public class PlayerUtils {
 	}
 
 	public static boolean playerInventoryHasIngredient(Inventory playerInventory, Ingredient ingredient) {
-		List<List<ItemStack>> inventories = Arrays.asList(
-				playerInventory.items,
-				playerInventory.offhand,
-				playerInventory.armor);
-
-		for (List<ItemStack> inventory : inventories) {
-			for (ItemStack stack : inventory) {
-				if (ingredient.test(stack)) {
-					return true;
-				}
-			}
+		for (ItemStack stack : playerInventory.getNonEquipmentItems()) {
+			if (ingredient.test(stack)) return true;
+		}
+		for (EquipmentSlot slot : EquipmentSlot.values()) {
+			if (ingredient.test(playerInventory.player.getItemBySlot(slot))) return true;
 		}
 		return false;
 	}

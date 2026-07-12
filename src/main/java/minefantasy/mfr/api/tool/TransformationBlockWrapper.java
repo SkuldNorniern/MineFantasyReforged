@@ -1,7 +1,6 @@
 package minefantasy.mfr.api.tool;
 
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.NbtUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
@@ -29,8 +28,8 @@ public class TransformationBlockWrapper {
 
 	public CompoundTag serializeNBT() {
 		CompoundTag nbt = new CompoundTag();
-		nbt.put("pos", NbtUtils.writeBlockPos(this.pos));
-		nbt.put("state", NbtUtils.writeBlockState(this.state));
+		nbt.putLong("pos", this.pos.asLong());
+		nbt.put("state", net.minecraft.nbt.NbtUtils.writeBlockState(this.state));
 		// TODO: ItemStack serialization requires HolderLookup.Provider in MC 1.20.5+
 		nbt.put("tool", new CompoundTag());
 		nbt.putInt("progress", this.progress);
@@ -40,13 +39,13 @@ public class TransformationBlockWrapper {
 	}
 
 	public static TransformationBlockWrapper deserializeNBT(CompoundTag nbt) {
-		// TODO: ItemStack and BlockState deserialization require HolderLookup.Provider in MC 1.20.5+
+		// TODO: BlockState deserialization requires HolderLookup.Provider — stubbed until BlockEntity context is available
 		ItemStack tagTool = ItemStack.EMPTY;
-		BlockPos tagPos = NbtUtils.readBlockPos(nbt.getCompound("pos"));
-		BlockState tagState = NbtUtils.readBlockState(nbt.getCompound("state"));
-		int tagProgress = nbt.getInt("progress");
-		int tagMaxProgress = nbt.getInt("maxProgress");
-		String tagDisplayName = nbt.getString("displayName");
+		BlockPos tagPos = BlockPos.of(nbt.getLong("pos").orElse(0L));
+		BlockState tagState = net.minecraft.world.level.block.Blocks.AIR.defaultBlockState();
+		int tagProgress = nbt.getInt("progress").orElse(0);
+		int tagMaxProgress = nbt.getInt("maxProgress").orElse(0);
+		String tagDisplayName = nbt.getString("displayName").orElse("");
 		return new TransformationBlockWrapper(tagTool, tagPos, tagState, tagProgress, tagMaxProgress, tagDisplayName);
 	}
 

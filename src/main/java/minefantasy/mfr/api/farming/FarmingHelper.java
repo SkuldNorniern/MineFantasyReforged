@@ -1,7 +1,6 @@
 package minefantasy.mfr.api.farming;
 
 import minefantasy.mfr.util.MFRLogUtil;
-import net.minecraft.world.item.HoeItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 
@@ -37,10 +36,7 @@ public class FarmingHelper {
 	}
 
 	private static float getHoeEfficiency(ItemStack hoe) {
-		if (!hoe.isEmpty() && hoe.getItem() instanceof HoeItem hoeItem) {
-			float speed = hoeItem.getTier().getSpeed();
-			return CustomHoeEntry.getEntryEfficiency(hoe, speed);
-		}
+		// HoeItem no longer exposes its ToolMaterial — use custom entry or a sensible default
 		return CustomHoeEntry.getEntryEfficiency(hoe, 6.0F);
 	}
 }

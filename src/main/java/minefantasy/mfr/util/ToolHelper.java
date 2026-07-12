@@ -9,7 +9,7 @@ import minefantasy.mfr.constants.Constants;
 import minefantasy.mfr.constants.Tool;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Tier;
+import net.minecraft.world.item.ToolMaterial;
 
 import java.util.ArrayList;
 
@@ -75,7 +75,7 @@ public class ToolHelper {
 		return Tool.OTHER;
 	}
 
-	public static boolean isItemMaterial(ItemStack stack, Tier material) {
+	public static boolean isItemMaterial(ItemStack stack, ToolMaterial material) {
 		if (!stack.isEmpty()) {
 			if (stack.getItem() instanceof IToolMaterial mat) {
 				return mat.getMaterial() != null && mat.getMaterial() == material;
@@ -99,7 +99,7 @@ public class ToolHelper {
 		if (stack.getMaxStackSize() == 1) {
 			CompoundTag nbt = minefantasy.mfr.util.NbtUtils.getOrCreateNBT(stack);
 			if (nbt.contains("MFCraftQuality")) {
-				return nbt.getFloat("MFCraftQuality");
+				return nbt.getFloat("MFCraftQuality").orElse(100.0F);
 			}
 		}
 		return 100.0F;
@@ -109,7 +109,7 @@ public class ToolHelper {
 		float quality = getQualityLevel(item);
 		CompoundTag nbt = minefantasy.mfr.util.NbtUtils.getOrCreateNBT(item);
 		if (nbt.contains("MF_Inferior")) {
-			if (nbt.getBoolean("MF_Inferior")) {
+			if (nbt.getBoolean("MF_Inferior").orElse(false)) {
 				dura /= 2;
 			} else {
 				dura *= 2;
@@ -128,7 +128,7 @@ public class ToolHelper {
 	public static float modifyDigOnQuality(ItemStack item, float digspeed) {
 		CompoundTag nbt = minefantasy.mfr.util.NbtUtils.getOrCreateNBT(item);
 		if (nbt.contains("MF_Inferior")) {
-			if (nbt.getBoolean("MF_Inferior")) {
+			if (nbt.getBoolean("MF_Inferior").orElse(false)) {
 				digspeed /= 1.25F;
 			} else {
 				digspeed *= 1.25F;
@@ -149,7 +149,7 @@ public class ToolHelper {
 		float quality = getQualityLevel(item);
 		CompoundTag nbt = minefantasy.mfr.util.NbtUtils.getOrCreateNBT(item);
 		if (nbt.contains("MF_Inferior")) {
-			if (nbt.getBoolean("MF_Inferior")) {
+			if (nbt.getBoolean("MF_Inferior").orElse(false)) {
 				damage /= 1.25F;
 			} else {
 				damage *= 1.25F;
@@ -168,7 +168,7 @@ public class ToolHelper {
 		float quality = getQualityLevel(item);
 		CompoundTag nbt = minefantasy.mfr.util.NbtUtils.getOrCreateNBT(item);
 		if (nbt.contains("MF_Inferior")) {
-			if (nbt.getBoolean("MF_Inferior")) {
+			if (nbt.getBoolean("MF_Inferior").orElse(false)) {
 				rating /= 1.25F;
 			} else {
 				rating *= 1.25F;
@@ -201,7 +201,7 @@ public class ToolHelper {
 	public static String getSpecial(ItemStack item) {
 		CompoundTag nbt = minefantasy.mfr.util.NbtUtils.getOrCreateNBT(item);
 		if (nbt.contains(specialItem)) {
-			return nbt.getString(specialItem);
+			return nbt.getString(specialItem).orElse(null);
 		}
 		return null;
 	}
@@ -217,7 +217,7 @@ public class ToolHelper {
 	public static float getSharpnessLevel(ItemStack item) {
 		CompoundTag nbt = minefantasy.mfr.util.NbtUtils.getOrCreateNBT(item);
 		if (nbt.contains(sharpnessLevelNBT)) {
-			return nbt.getFloat(sharpnessLevelNBT);
+			return nbt.getFloat(sharpnessLevelNBT).orElse(0F);
 		}
 		return 0F;
 	}

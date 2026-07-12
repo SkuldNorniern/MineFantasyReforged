@@ -2,7 +2,7 @@ package minefantasy.mfr.api.stamina;
 
 import minefantasy.mfr.config.ConfigStamina;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.ItemStack;
 
 import java.util.HashMap;
@@ -46,7 +46,7 @@ public class CustomFoodEntry {
 	}
 
 	public static void registerItem(ItemStack piece, int tier, float sugar, float carbs, float fats) {
-		ResourceLocation key = BuiltInRegistries.ITEM.getKey(piece.getItem());
+		Identifier key = BuiltInRegistries.ITEM.getKey(piece.getItem());
 		if (key != null) {
 			entries.put(key.toString(), new CustomFoodEntry(tier, sugar, carbs, fats));
 		}
@@ -54,7 +54,7 @@ public class CustomFoodEntry {
 
 	public static CustomFoodEntry getEntry(ItemStack item) {
 		if (item != null) {
-			ResourceLocation key = BuiltInRegistries.ITEM.getKey(item.getItem());
+			Identifier key = BuiltInRegistries.ITEM.getKey(item.getItem());
 			if (key != null) {
 				return entries.get(key.toString());
 			}

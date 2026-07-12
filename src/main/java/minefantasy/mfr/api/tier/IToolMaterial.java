@@ -1,7 +1,7 @@
 package minefantasy.mfr.api.tier;
 
-import net.minecraft.world.item.Tier;
+import net.minecraft.world.item.ToolMaterial;
 
 public interface IToolMaterial {
-	Tier getMaterial();
+	ToolMaterial getMaterial();
 }

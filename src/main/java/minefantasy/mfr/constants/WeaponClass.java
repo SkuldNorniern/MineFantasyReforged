@@ -1,8 +1,8 @@
 package minefantasy.mfr.constants;
 
 import minefantasy.mfr.api.weapon.IWeaponClass;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.SwordItem;
 
 import java.util.HashMap;
 
@@ -46,7 +46,7 @@ public class WeaponClass {
 	public static WeaponClass findClassForAny(ItemStack weapon) {
 		if (weapon.isEmpty())
 			return FIST;
-		if (weapon.getItem() instanceof IWeaponClass || weapon.getItem() instanceof SwordItem) {
+		if (weapon.getItem() instanceof IWeaponClass || weapon.has(DataComponents.WEAPON)) {
 			return getWeaponClass(weapon);
 		}
 		return WeaponClass.MISC;
