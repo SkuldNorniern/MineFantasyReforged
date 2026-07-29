@@ -2,6 +2,7 @@ package minefantasy.mfr.init;
 
 import minefantasy.mfr.MineFantasyReforged;
 import minefantasy.mfr.registry.recipe.AlloyRecipe;
+import minefantasy.mfr.registry.recipe.AnvilRecipe;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.neoforged.neoforge.registries.DeferredHolder;
@@ -17,6 +18,14 @@ public class ModRecipeTypes {
 				@Override
 				public String toString() {
 					return "alloy";
+				}
+			});
+
+	public static final DeferredHolder<RecipeType<?>, RecipeType<AnvilRecipe>> ANVIL =
+			RECIPE_TYPES.register("anvil", () -> new RecipeType<AnvilRecipe>() {
+				@Override
+				public String toString() {
+					return "anvil";
 				}
 			});
 }
