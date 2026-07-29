@@ -1,5 +1,6 @@
 package minefantasy.mfr.constants;
 
+import com.mojang.serialization.Codec;
 import net.minecraft.network.chat.Component;
 
 public enum Tool {
@@ -16,6 +17,8 @@ public enum Tool {
     SPANNER("spanner", true),
     SPOON("spoon", true),
     WASH("wash", false);
+
+    public static final Codec<Tool> CODEC = Codec.STRING.xmap(Tool::fromName, t -> t.unlocalizedName);
 
     private final String unlocalizedName;
     private final boolean hasTiers;
