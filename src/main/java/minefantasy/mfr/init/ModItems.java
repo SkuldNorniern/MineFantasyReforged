@@ -3,6 +3,7 @@ package minefantasy.mfr.init;
 import minefantasy.mfr.MineFantasyReforged;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ToolMaterial;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
@@ -106,13 +107,23 @@ public class ModItems {
     public static final DeferredItem<Item> TALLOW = ITEMS.registerSimpleItem("tallow");
     public static final DeferredItem<Item> SALT = ITEMS.registerSimpleItem("salt");
 
-    // ---- Weapons & Tools (stub items to be ported to custom Item subclasses) ----
-    public static final DeferredItem<Item> COPPER_SWORD = ITEMS.registerSimpleItem("copper_sword");
-    public static final DeferredItem<Item> BRONZE_SWORD = ITEMS.registerSimpleItem("bronze_sword");
-    public static final DeferredItem<Item> STEEL_SWORD = ITEMS.registerSimpleItem("steel_sword");
-    public static final DeferredItem<Item> COPPER_PICKAXE = ITEMS.registerSimpleItem("copper_pickaxe");
-    public static final DeferredItem<Item> BRONZE_PICKAXE = ITEMS.registerSimpleItem("bronze_pickaxe");
-    public static final DeferredItem<Item> STEEL_PICKAXE = ITEMS.registerSimpleItem("steel_pickaxe");
+    // ---- Weapons & Tools ----
+    // Real mining/attack stats via vanilla's ToolMaterial system (MC 26 no longer needs
+    // PickaxeItem/SwordItem subclasses — Item.Properties#pickaxe/#sword build the Tool +
+    // Weapon data components directly). Bronze/steel stats are placeholders pending the
+    // real MFR material-tier system (see ModToolMaterials).
+    public static final DeferredItem<Item> COPPER_SWORD = ITEMS.registerItem("copper_sword",
+            Item::new, props -> props.sword(ToolMaterial.COPPER, 3.0F, -2.4F));
+    public static final DeferredItem<Item> BRONZE_SWORD = ITEMS.registerItem("bronze_sword",
+            Item::new, props -> props.sword(ModToolMaterials.BRONZE, 3.0F, -2.4F));
+    public static final DeferredItem<Item> STEEL_SWORD = ITEMS.registerItem("steel_sword",
+            Item::new, props -> props.sword(ModToolMaterials.STEEL, 3.0F, -2.4F));
+    public static final DeferredItem<Item> COPPER_PICKAXE = ITEMS.registerItem("copper_pickaxe",
+            Item::new, props -> props.pickaxe(ToolMaterial.COPPER, 1.0F, -2.8F));
+    public static final DeferredItem<Item> BRONZE_PICKAXE = ITEMS.registerItem("bronze_pickaxe",
+            Item::new, props -> props.pickaxe(ModToolMaterials.BRONZE, 1.0F, -2.8F));
+    public static final DeferredItem<Item> STEEL_PICKAXE = ITEMS.registerItem("steel_pickaxe",
+            Item::new, props -> props.pickaxe(ModToolMaterials.STEEL, 1.0F, -2.8F));
 
     // ---- Armour (stub items to be ported) ----
     public static final DeferredItem<Item> COPPER_HELM = ITEMS.registerSimpleItem("copper_helm");
