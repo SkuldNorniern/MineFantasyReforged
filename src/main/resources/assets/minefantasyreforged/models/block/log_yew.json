@@ -1,6 +1,7 @@
-﻿{
-  "parent": "minecraft:block/cube_all",
+{
+  "parent": "minecraft:block/cube_column",
   "textures": {
-    "all": "minecraft:block/stone"
+    "side": "minefantasyreforged:block/yew_log_side",
+    "end": "minefantasyreforged:block/yew_log_top"
   }
 }

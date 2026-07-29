@@ -1,6 +1,8 @@
-﻿{
-  "parent": "minecraft:block/cube_all",
+{
+  "parent": "minecraft:block/cube_bottom_top",
   "textures": {
-    "all": "minecraft:block/stone"
+    "side": "minefantasyreforged:block/forge_stone",
+    "top": "minefantasyreforged:block/forge_top",
+    "bottom": "minefantasyreforged:block/forge_stone"
   }
 }

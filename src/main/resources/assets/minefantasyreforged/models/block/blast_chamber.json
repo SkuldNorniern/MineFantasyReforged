@@ -1,6 +1,8 @@
-﻿{
-  "parent": "minecraft:block/cube_all",
+{
+  "parent": "minecraft:block/cube_bottom_top",
   "textures": {
-    "all": "minecraft:block/stone"
+    "side": "minefantasyreforged:block/blast_chamber_side",
+    "top": "minefantasyreforged:block/blast_chamber_top",
+    "bottom": "minefantasyreforged:block/blast_chamber_side"
   }
 }

@@ -1,6 +1,6 @@
-﻿{
+{
   "parent": "minecraft:block/cube_all",
   "textures": {
-    "all": "minecraft:block/stone"
+    "all": "minefantasyreforged:block/reinforced_stone_base"
   }
 }
