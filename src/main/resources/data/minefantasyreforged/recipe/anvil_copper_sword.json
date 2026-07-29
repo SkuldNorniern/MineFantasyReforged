@@ -1,0 +1,14 @@
+{
+  "type": "minefantasyreforged:anvil_shapeless",
+  "ingredients": [
+    "minefantasyreforged:copper_ingot",
+    "minefantasyreforged:copper_ingot"
+  ],
+  "result": {
+    "id": "minefantasyreforged:copper_sword"
+  },
+  "tool_type": "hammer",
+  "craft_time": 20,
+  "tool_tier": 0,
+  "anvil_tier": 0
+}
