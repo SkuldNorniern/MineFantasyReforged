@@ -1,6 +1,7 @@
 package minefantasy.mfr.init;
 
 import minefantasy.mfr.MineFantasyReforged;
+import minefantasy.mfr.block.AnvilBlock;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.block.Block;
@@ -75,10 +76,18 @@ public class ModBlocks {
     public static final DeferredBlock<Block> NAILED_PLANKS = wood("nailed_planks", MapColor.WOOD, 2.5F, 4.0F);
 
     // ---- Crafting Stations ----
-    public static final DeferredBlock<Block> ANVIL_STONE = stone("anvil_stone", 5.0F, 6.0F);
-    public static final DeferredBlock<Block> ANVIL_BRONZE = metal("anvil_bronze", MapColor.COLOR_ORANGE, 5.0F, 6.0F);
-    public static final DeferredBlock<Block> ANVIL_IRON = metal("anvil_iron", MapColor.METAL, 5.0F, 6.0F);
-    public static final DeferredBlock<Block> ANVIL_STEEL = metal("anvil_steel", MapColor.METAL, 6.0F, 8.0F);
+    public static final DeferredBlock<AnvilBlock> ANVIL_STONE = BLOCKS.register("anvil_stone", id -> new AnvilBlock(
+            BlockBehaviour.Properties.of().setId(ResourceKey.create(Registries.BLOCK, id))
+                    .mapColor(MapColor.STONE).requiresCorrectToolForDrops().strength(5.0F, 6.0F)));
+    public static final DeferredBlock<AnvilBlock> ANVIL_BRONZE = BLOCKS.register("anvil_bronze", id -> new AnvilBlock(
+            BlockBehaviour.Properties.of().setId(ResourceKey.create(Registries.BLOCK, id))
+                    .mapColor(MapColor.COLOR_ORANGE).requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.METAL)));
+    public static final DeferredBlock<AnvilBlock> ANVIL_IRON = BLOCKS.register("anvil_iron", id -> new AnvilBlock(
+            BlockBehaviour.Properties.of().setId(ResourceKey.create(Registries.BLOCK, id))
+                    .mapColor(MapColor.METAL).requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.METAL)));
+    public static final DeferredBlock<AnvilBlock> ANVIL_STEEL = BLOCKS.register("anvil_steel", id -> new AnvilBlock(
+            BlockBehaviour.Properties.of().setId(ResourceKey.create(Registries.BLOCK, id))
+                    .mapColor(MapColor.METAL).requiresCorrectToolForDrops().strength(6.0F, 8.0F).sound(SoundType.METAL)));
     public static final DeferredBlock<Block> CARPENTER = wood("carpenter", MapColor.WOOD, 2.5F, 3.0F);
     public static final DeferredBlock<Block> FORGE = BLOCKS.register("forge", id -> new Block(
             BlockBehaviour.Properties.of().setId(ResourceKey.create(Registries.BLOCK, id))
