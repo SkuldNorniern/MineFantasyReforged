@@ -3,6 +3,8 @@ package minefantasy.mfr.init;
 import minefantasy.mfr.MineFantasyReforged;
 import minefantasy.mfr.registry.recipe.AlloyRatioRecipe;
 import minefantasy.mfr.registry.recipe.AlloyShapedRecipe;
+import minefantasy.mfr.registry.recipe.AnvilShapedRecipe;
+import minefantasy.mfr.registry.recipe.AnvilShapelessRecipe;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.neoforged.neoforge.registries.DeferredHolder;
@@ -18,4 +20,10 @@ public class ModRecipeSerializers {
 
 	public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<AlloyRatioRecipe>> ALLOY_RATIO =
 			RECIPE_SERIALIZERS.register("alloy_ratio", () -> AlloyRatioRecipe.SERIALIZER);
+
+	public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<AnvilShapedRecipe>> ANVIL_SHAPED =
+			RECIPE_SERIALIZERS.register("anvil_shaped", () -> AnvilShapedRecipe.SERIALIZER);
+
+	public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<AnvilShapelessRecipe>> ANVIL_SHAPELESS =
+			RECIPE_SERIALIZERS.register("anvil_shapeless", () -> AnvilShapelessRecipe.SERIALIZER);
 }
