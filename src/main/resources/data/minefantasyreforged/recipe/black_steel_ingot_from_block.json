@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "minefantasyreforged:black_steel_block"
+  ],
+  "result": {
+    "count": 9,
+    "id": "minefantasyreforged:black_steel_ingot"
+  }
+}

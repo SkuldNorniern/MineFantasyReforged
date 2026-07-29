@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": "minefantasyreforged:tin_ore",
+  "result": {
+    "id": "minefantasyreforged:tin_ingot"
+  },
+  "experience": 0.4,
+  "cookingtime": 200
+}

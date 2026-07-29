@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": "minefantasyreforged:silver_ore",
+  "result": {
+    "id": "minefantasyreforged:silver_ingot"
+  },
+  "experience": 0.6,
+  "cookingtime": 200
+}

@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "minefantasyreforged:bronze_block"
+  ],
+  "result": {
+    "count": 9,
+    "id": "minefantasyreforged:bronze_ingot"
+  }
+}

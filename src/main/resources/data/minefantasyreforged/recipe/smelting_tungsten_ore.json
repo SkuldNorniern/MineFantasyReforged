@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": "minefantasyreforged:tungsten_ore",
+  "result": {
+    "id": "minefantasyreforged:tungsten_ingot"
+  },
+  "experience": 1.0,
+  "cookingtime": 200
+}

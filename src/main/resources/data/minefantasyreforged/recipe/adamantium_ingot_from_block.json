@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "minefantasyreforged:adamantium_block"
+  ],
+  "result": {
+    "count": 9,
+    "id": "minefantasyreforged:adamantium_ingot"
+  }
+}

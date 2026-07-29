@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "minefantasyreforged:mithril_block"
+  ],
+  "result": {
+    "count": 9,
+    "id": "minefantasyreforged:mithril_ingot"
+  }
+}
