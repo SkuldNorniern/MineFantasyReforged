@@ -1,5 +1,6 @@
 package minefantasy.mfr.constants;
 
+import com.mojang.serialization.Codec;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.player.Player;
 import net.neoforged.api.distmarker.Dist;
@@ -13,6 +14,8 @@ public enum Skill {
 	PROVISIONING("provisioning"),
 	COMBAT("combat"),
 	NONE("none");
+
+	public static final Codec<Skill> CODEC = Codec.STRING.xmap(Skill::fromName, s -> s.unlocalizedName);
 
 	Skill(String unlocalizedName) {
 		this.unlocalizedName = unlocalizedName;
