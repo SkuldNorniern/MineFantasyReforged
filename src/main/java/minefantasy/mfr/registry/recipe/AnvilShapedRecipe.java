@@ -80,35 +80,39 @@ public class AnvilShapedRecipe extends AnvilRecipe {
 			for (int matrixY = 0; matrixY < MAX_HEIGHT; ++matrixY) {
 				int recipeX = matrixX - x;
 				int recipeY = matrixY - y;
-				Ingredient ingredient = Ingredient.of();
-
-				if (recipeX >= 0 && recipeY >= 0 && recipeX < width && recipeY < height) {
-					ingredient = mirror
-							? ingredients.get(width - recipeX - 1 + recipeY * width)
-							: ingredients.get(recipeX + recipeY * width);
-				}
+				boolean hasIngredient = recipeX >= 0 && recipeY >= 0 && recipeX < width && recipeY < height;
 
 				ItemStack inputItem = matrixX < input.width() && matrixY < input.height()
 						? input.getItem(matrixX, matrixY) : ItemStack.EMPTY;
 
-				if (!inputItem.isEmpty() || !ingredient.test(ItemStack.EMPTY)) {
-					if (Heatable.requiresHeating && Heatable.canHeatItem(inputItem)) {
+				if (!hasIngredient) {
+					// Recipe has no ingredient in this cell — the grid must be empty here too.
+					if (!inputItem.isEmpty()) {
 						return false;
 					}
-					if (!Heatable.isWorkable(inputItem)) {
-						return false;
-					}
-					inputItem = getHotItem(inputItem);
+					continue;
+				}
 
-					if (inputItem.isEmpty()) {
-						return false;
-					}
-					if (!ingredient.test(inputItem)) {
-						return false;
-					}
-					if (!CustomToolHelper.doesMatchForRecipe(ingredient, inputItem)) {
-						return false;
-					}
+				Ingredient ingredient = mirror
+						? ingredients.get(width - recipeX - 1 + recipeY * width)
+						: ingredients.get(recipeX + recipeY * width);
+
+				if (Heatable.requiresHeating && Heatable.canHeatItem(inputItem)) {
+					return false;
+				}
+				if (!Heatable.isWorkable(inputItem)) {
+					return false;
+				}
+				inputItem = getHotItem(inputItem);
+
+				if (inputItem.isEmpty()) {
+					return false;
+				}
+				if (!ingredient.test(inputItem)) {
+					return false;
+				}
+				if (!CustomToolHelper.doesMatchForRecipe(ingredient, inputItem)) {
+					return false;
 				}
 			}
 		}
