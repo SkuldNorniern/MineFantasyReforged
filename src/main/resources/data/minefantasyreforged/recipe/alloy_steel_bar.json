@@ -1,0 +1,26 @@
+{
+  "type": "minefantasyreforged:alloy_ratio",
+  "result": {
+    "id": "minefantasyreforged:bar",
+    "components": {
+      "minecraft:custom_data": {
+        "mf_custom_materials": {
+          "main_material": "steel"
+        }
+      }
+    }
+  },
+  "tier": 1,
+  "research": "smelt_steel",
+  "skill": "artisanry",
+  "skill_xp": 2,
+  "vanilla_xp": 0.4,
+  "ingredients": [
+    {
+      "neoforge:ingredient_type": "minefantasyreforged:material",
+      "items": "minefantasyreforged:bar",
+      "material": "pig_iron"
+    }
+  ],
+  "repeat_amount": 9
+}

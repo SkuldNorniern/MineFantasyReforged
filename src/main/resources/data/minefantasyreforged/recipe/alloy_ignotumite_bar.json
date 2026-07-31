@@ -2,36 +2,32 @@
   "type": "minefantasyreforged:alloy_ratio",
   "result": {
     "id": "minefantasyreforged:bar",
-    "count": 3,
     "components": {
       "minecraft:custom_data": {
         "mf_custom_materials": {
-          "main_material": "bronze"
+          "main_material": "ignotumite"
         }
       }
     }
   },
-  "tier": 0,
-  "research": "smelt_bronze",
+  "tier": 3,
+  "research": "smelt_ignotumite",
   "skill": "artisanry",
-  "skill_xp": 1,
-  "vanilla_xp": 0.3,
+  "skill_xp": 5,
+  "vanilla_xp": 1.1,
   "ingredients": [
     {
       "neoforge:ingredient_type": "minefantasyreforged:material",
       "items": "minefantasyreforged:bar",
-      "material": "copper"
+      "material": "adamantium"
     },
     {
       "neoforge:ingredient_type": "minefantasyreforged:material",
       "items": "minefantasyreforged:bar",
-      "material": "copper"
+      "material": "adamantium"
     },
-    {
-      "neoforge:ingredient_type": "minefantasyreforged:material",
-      "items": "minefantasyreforged:bar",
-      "material": "tin"
-    }
+    "minecraft:emerald",
+    "minecraft:blaze_powder"
   ],
-  "repeat_amount": 3
+  "repeat_amount": 2
 }
