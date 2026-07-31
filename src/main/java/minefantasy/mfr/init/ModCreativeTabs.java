@@ -146,6 +146,11 @@ public class ModCreativeTabs {
 						output.accept(ModItems.RIVET.get());
 						output.accept(ModItems.TALLOW.get());
 						output.accept(ModItems.SALT.get());
+						output.accept(ModItems.LEATHER_STRIP.get());
+						output.acceptAll(ModItems.BAR.get().createAllVariants());
+						output.acceptAll(ModItems.PLATE.get().createAllVariants());
+						output.acceptAll(ModItems.METAL_HUNK.get().createAllVariants());
+						output.acceptAll(ModItems.TIMBER.get().createAllVariants());
 					})
 					.build());
 

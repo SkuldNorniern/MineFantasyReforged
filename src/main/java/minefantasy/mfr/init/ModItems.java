@@ -1,6 +1,8 @@
 package minefantasy.mfr.init;
 
 import minefantasy.mfr.MineFantasyReforged;
+import minefantasy.mfr.item.ItemMetalComponent;
+import minefantasy.mfr.item.ItemWoodComponent;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ToolMaterial;
@@ -112,6 +114,14 @@ public class ModItems {
     public static final DeferredItem<Item> RIVET = ITEMS.registerSimpleItem("rivet");
     public static final DeferredItem<Item> TALLOW = ITEMS.registerSimpleItem("tallow");
     public static final DeferredItem<Item> SALT = ITEMS.registerSimpleItem("salt");
+    public static final DeferredItem<Item> LEATHER_STRIP = ITEMS.registerSimpleItem("leather_strip");
+
+    // ---- Generic material-carrying "commodity" items (see ItemComponentMFR) ----
+    // Material is stored on the ItemStack, not baked into a separate item per metal/wood.
+    public static final DeferredItem<ItemMetalComponent> BAR = ITEMS.registerItem("bar", props -> new ItemMetalComponent(props, 1F));
+    public static final DeferredItem<ItemMetalComponent> PLATE = ITEMS.registerItem("plate", props -> new ItemMetalComponent(props, 2F));
+    public static final DeferredItem<ItemMetalComponent> METAL_HUNK = ITEMS.registerItem("metal_hunk", props -> new ItemMetalComponent(props, 0.25F));
+    public static final DeferredItem<ItemWoodComponent> TIMBER = ITEMS.registerItem("timber", ItemWoodComponent::new);
 
     // ---- Weapons & Tools ----
     // Real mining/attack stats via vanilla's ToolMaterial system (MC 26 no longer needs
