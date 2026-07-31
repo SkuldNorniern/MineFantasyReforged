@@ -15,10 +15,12 @@ import minefantasy.mfr.init.ModRecipeTypes;
 import minefantasy.mfr.init.ModSounds;
 import minefantasy.mfr.event.MFREventHandler;
 import minefantasy.mfr.network.MFRNetwork;
+import minefantasy.mfr.registry.material.factories.CustomMaterialFactory;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
+import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import org.slf4j.Logger;
 
@@ -47,6 +49,14 @@ public class MineFantasyReforged {
 
         MFRNetwork.register(modEventBus);
 
+        // Runs after all DeferredRegisters have populated their holders — CustomMaterialFactory
+        // resolves item ingredients via ModItems.XXX.get(), which isn't safe any earlier.
+        modEventBus.addListener(this::onCommonSetup);
+
         NeoForge.EVENT_BUS.register(MFREventHandler.class);
+    }
+
+    private void onCommonSetup(FMLCommonSetupEvent event) {
+        CustomMaterialFactory.load();
     }
 }
