@@ -7,6 +7,7 @@ import minefantasy.mfr.init.ModBlocks;
 import minefantasy.mfr.init.ModAttachmentTypes;
 import minefantasy.mfr.init.ModCreativeTabs;
 import minefantasy.mfr.init.ModDataComponents;
+import minefantasy.mfr.init.ModIngredientTypes;
 import minefantasy.mfr.init.ModItems;
 import minefantasy.mfr.init.ModMaterials;
 import minefantasy.mfr.init.ModMenuTypes;
@@ -43,6 +44,7 @@ public class MineFantasyReforged {
         ModRecipeTypes.RECIPE_TYPES.register(modEventBus);
         ModRecipeSerializers.RECIPE_SERIALIZERS.register(modEventBus);
         ModMenuTypes.MENU_TYPES.register(modEventBus);
+        ModIngredientTypes.INGREDIENT_TYPES.register(modEventBus);
 
         modContainer.registerConfig(ModConfig.Type.SERVER, MFRConfig.SERVER_SPEC);
         modContainer.registerConfig(ModConfig.Type.CLIENT, MFRConfig.CLIENT_SPEC);
