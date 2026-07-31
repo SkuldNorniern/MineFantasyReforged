@@ -82,6 +82,12 @@ public class ModItems {
     public static final DeferredItem<Item> ADAMANTIUM_INGOT = ITEMS.registerSimpleItem("adamantium_ingot");
     public static final DeferredItem<Item> MITHRIL_INGOT = ITEMS.registerSimpleItem("mithril_ingot");
     public static final DeferredItem<Item> TUNGSTEN_INGOT = ITEMS.registerSimpleItem("tungsten_ingot");
+    public static final DeferredItem<Item> OBSIDIAN_INGOT = ITEMS.registerSimpleItem("obsidian_ingot");
+    public static final DeferredItem<Item> ENCRUSTED_INGOT = ITEMS.registerSimpleItem("encrusted_ingot");
+    public static final DeferredItem<Item> IGNOTUMITE_INGOT = ITEMS.registerSimpleItem("ignotumite_ingot");
+    public static final DeferredItem<Item> MITHIUM_INGOT = ITEMS.registerSimpleItem("mithium_ingot");
+    public static final DeferredItem<Item> ENDER_INGOT = ITEMS.registerSimpleItem("ender_ingot");
+    public static final DeferredItem<Item> COMPOSITE_ALLOY_INGOT = ITEMS.registerSimpleItem("composite_alloy_ingot");
 
     // ---- Dusts & Powders ----
     public static final DeferredItem<Item> COPPER_DUST = ITEMS.registerSimpleItem("copper_dust");

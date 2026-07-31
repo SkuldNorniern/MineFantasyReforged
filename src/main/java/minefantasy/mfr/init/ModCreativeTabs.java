@@ -120,6 +120,12 @@ public class ModCreativeTabs {
 						output.accept(ModItems.ADAMANTIUM_INGOT.get());
 						output.accept(ModItems.MITHRIL_INGOT.get());
 						output.accept(ModItems.TUNGSTEN_INGOT.get());
+						output.accept(ModItems.OBSIDIAN_INGOT.get());
+						output.accept(ModItems.ENCRUSTED_INGOT.get());
+						output.accept(ModItems.IGNOTUMITE_INGOT.get());
+						output.accept(ModItems.MITHIUM_INGOT.get());
+						output.accept(ModItems.ENDER_INGOT.get());
+						output.accept(ModItems.COMPOSITE_ALLOY_INGOT.get());
 						output.accept(ModItems.COPPER_DUST.get());
 						output.accept(ModItems.TIN_DUST.get());
 						output.accept(ModItems.SILVER_DUST.get());
