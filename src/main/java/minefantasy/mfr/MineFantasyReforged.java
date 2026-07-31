@@ -8,6 +8,7 @@ import minefantasy.mfr.init.ModAttachmentTypes;
 import minefantasy.mfr.init.ModCreativeTabs;
 import minefantasy.mfr.init.ModDataComponents;
 import minefantasy.mfr.init.ModItems;
+import minefantasy.mfr.init.ModMaterials;
 import minefantasy.mfr.init.ModMenuTypes;
 import minefantasy.mfr.init.ModRecipeSerializers;
 import minefantasy.mfr.init.ModRecipeTypes;
@@ -27,6 +28,9 @@ public class MineFantasyReforged {
     public static final Logger LOG = LogUtils.getLogger();
 
     public MineFantasyReforged(IEventBus modEventBus, ModContainer modContainer) {
+        ModMaterials.initBaseMaterials();
+        ModMaterials.initLeatherMaterials();
+
         ModBlocks.BLOCKS.register(modEventBus);
         ModItems.ITEMS.register(modEventBus);
         ModBlockEntities.BLOCK_ENTITIES.register(modEventBus);
