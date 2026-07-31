@@ -1,0 +1,37 @@
+{
+  "type": "minefantasyreforged:alloy_ratio",
+  "ingredients": [
+    {
+      "neoforge:ingredient_type": "minefantasyreforged:material",
+      "items": "minefantasyreforged:bar",
+      "material": "copper"
+    },
+    {
+      "neoforge:ingredient_type": "minefantasyreforged:material",
+      "items": "minefantasyreforged:bar",
+      "material": "copper"
+    },
+    {
+      "neoforge:ingredient_type": "minefantasyreforged:material",
+      "items": "minefantasyreforged:bar",
+      "material": "tin"
+    }
+  ],
+  "result": {
+    "id": "minefantasyreforged:bar",
+    "count": 3,
+    "components": {
+      "minecraft:custom_data": {
+        "mf_custom_materials": {
+          "main_material": "bronze"
+        }
+      }
+    }
+  },
+  "tier": 0,
+  "research": "smelt_bronze",
+  "skill": "artisanry",
+  "skill_xp": 1,
+  "vanilla_xp": 0.3,
+  "repeat_amount": 3
+}
