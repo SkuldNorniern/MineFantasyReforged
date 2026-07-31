@@ -20,19 +20,19 @@ import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.Level;
 import org.jspecify.annotations.Nullable;
 
-import java.util.List;
+import java.util.Optional;
 
 /**
- * Shaped anvil recipe. Hand-rolled mirror-matching (ported from legacy) since the grid can be
- * up to 6x4 — larger than vanilla {@code ShapedRecipePattern}'s hardcoded 3x3 cap.
+ * Shaped anvil recipe, matched over the 6x4 grid via {@link AnvilRecipePattern} (pattern+key,
+ * same shape as the legacy MFR anvil recipe JSON and as vanilla's own {@code ShapedRecipePattern}
+ * — just sized for a bigger grid). MFR-specific matching extras (heat requirements, hot-item
+ * substitution) live here rather than in the pattern class itself.
  */
 public class AnvilShapedRecipe extends AnvilRecipe {
 
 	public static final MapCodec<AnvilShapedRecipe> MAP_CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
 					Recipe.CommonInfo.MAP_CODEC.forGetter(o -> o.commonInfo),
-					Codec.INT.fieldOf("width").forGetter(AnvilShapedRecipe::getWidth),
-					Codec.INT.fieldOf("height").forGetter(AnvilShapedRecipe::getHeight),
-					Ingredient.CODEC.listOf().fieldOf("ingredients").forGetter(o -> o.ingredients),
+					AnvilRecipePattern.MAP_CODEC.forGetter(o -> o.pattern),
 					ItemStackTemplate.CODEC.fieldOf("result").forGetter(o -> o.result),
 					Tool.CODEC.optionalFieldOf("tool_type", Tool.HAMMER).forGetter(AnvilRecipe::getToolType),
 					Codec.INT.optionalFieldOf("craft_time", 0).forGetter(AnvilRecipe::getCraftTime),
@@ -50,23 +50,19 @@ public class AnvilShapedRecipe extends AnvilRecipe {
 
 	public static final RecipeSerializer<AnvilShapedRecipe> SERIALIZER = new RecipeSerializer<>(MAP_CODEC, STREAM_CODEC);
 
-	private final int width;
-	private final int height;
-	private final List<Ingredient> ingredients;
+	private final AnvilRecipePattern pattern;
 
-	public AnvilShapedRecipe(Recipe.CommonInfo commonInfo, int width, int height, List<Ingredient> ingredients,
-			ItemStackTemplate result, Tool toolType, int craftTime, int toolTier, int anvilTier, boolean hotOutput,
+	public AnvilShapedRecipe(Recipe.CommonInfo commonInfo, AnvilRecipePattern pattern, ItemStackTemplate result,
+			Tool toolType, int craftTime, int toolTier, int anvilTier, boolean hotOutput,
 			String requiredResearch, @Nullable Skill skill, int skillXp, float vanillaXp) {
 		super(commonInfo, result, toolType, craftTime, toolTier, anvilTier, hotOutput, requiredResearch, skill, skillXp, vanillaXp);
-		this.width = width;
-		this.height = height;
-		this.ingredients = ingredients;
+		this.pattern = pattern;
 	}
 
 	@Override
 	public boolean matches(CraftingInput input, Level level) {
-		for (int x = 0; x <= MAX_WIDTH - width; ++x) {
-			for (int y = 0; y <= MAX_HEIGHT - height; ++y) {
+		for (int x = 0; x <= MAX_WIDTH - pattern.width(); ++x) {
+			for (int y = 0; y <= MAX_HEIGHT - pattern.height(); ++y) {
 				if (checkMatch(input, x, y, true) || checkMatch(input, x, y, false)) {
 					return true;
 				}
@@ -78,24 +74,18 @@ public class AnvilShapedRecipe extends AnvilRecipe {
 	private boolean checkMatch(CraftingInput input, int x, int y, boolean mirror) {
 		for (int matrixX = 0; matrixX < MAX_WIDTH; ++matrixX) {
 			for (int matrixY = 0; matrixY < MAX_HEIGHT; ++matrixY) {
-				int recipeX = matrixX - x;
-				int recipeY = matrixY - y;
-				boolean hasIngredient = recipeX >= 0 && recipeY >= 0 && recipeX < width && recipeY < height;
+				Optional<Ingredient> ingredient = pattern.ingredientAt(matrixX - x, matrixY - y, mirror);
 
 				ItemStack inputItem = matrixX < input.width() && matrixY < input.height()
 						? input.getItem(matrixX, matrixY) : ItemStack.EMPTY;
 
-				if (!hasIngredient) {
-					// Recipe has no ingredient in this cell — the grid must be empty here too.
+				if (ingredient.isEmpty()) {
+					// Pattern has no ingredient in this cell — the grid must be empty here too.
 					if (!inputItem.isEmpty()) {
 						return false;
 					}
 					continue;
 				}
-
-				Ingredient ingredient = mirror
-						? ingredients.get(width - recipeX - 1 + recipeY * width)
-						: ingredients.get(recipeX + recipeY * width);
 
 				if (Heatable.requiresHeating && Heatable.canHeatItem(inputItem)) {
 					return false;
@@ -108,10 +98,10 @@ public class AnvilShapedRecipe extends AnvilRecipe {
 				if (inputItem.isEmpty()) {
 					return false;
 				}
-				if (!ingredient.test(inputItem)) {
+				if (!ingredient.get().test(inputItem)) {
 					return false;
 				}
-				if (!CustomToolHelper.doesMatchForRecipe(ingredient, inputItem)) {
+				if (!CustomToolHelper.doesMatchForRecipe(ingredient.get(), inputItem)) {
 					return false;
 				}
 			}
@@ -134,14 +124,14 @@ public class AnvilShapedRecipe extends AnvilRecipe {
 
 	@Override
 	public PlacementInfo placementInfo() {
-		return PlacementInfo.create(ingredients);
+		return PlacementInfo.createFromOptionals(pattern.ingredients());
 	}
 
 	public int getWidth() {
-		return width;
+		return pattern.width();
 	}
 
 	public int getHeight() {
-		return height;
+		return pattern.height();
 	}
 }

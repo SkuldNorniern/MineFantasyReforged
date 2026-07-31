@@ -1,12 +1,14 @@
 {
   "type": "minefantasyreforged:anvil_shaped",
-  "width": 3,
-  "height": 1,
-  "ingredients": [
-    "minefantasyreforged:copper_ingot",
-    "minefantasyreforged:copper_ingot",
-    "minefantasyreforged:copper_ingot"
+  "pattern": [
+    "CCC",
+    " S ",
+    " S "
   ],
+  "key": {
+    "C": "minefantasyreforged:copper_ingot",
+    "S": "minecraft:stick"
+  },
   "result": {
     "id": "minefantasyreforged:copper_pickaxe"
   },
