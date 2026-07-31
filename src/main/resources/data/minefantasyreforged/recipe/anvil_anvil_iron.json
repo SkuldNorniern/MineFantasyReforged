@@ -1,0 +1,27 @@
+{
+  "type": "minefantasyreforged:anvil_shaped",
+  "pattern": [
+    " BB",
+    "BBB",
+    " B "
+  ],
+  "key": {
+    "B": {
+      "neoforge:ingredient_type": "minefantasyreforged:material",
+      "items": "minefantasyreforged:bar",
+      "material": "iron"
+    }
+  },
+  "result": {
+    "id": "minefantasyreforged:anvil_iron"
+  },
+  "tool_type": "hammer",
+  "craft_time": 60,
+  "tool_tier": -1,
+  "anvil_tier": -1,
+  "output_hot": false,
+  "research": "smelt_iron",
+  "skill": "artisanry",
+  "skill_xp": 1,
+  "vanilla_xp": 0.2
+}

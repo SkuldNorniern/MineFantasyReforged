@@ -1,0 +1,34 @@
+{
+  "type": "minefantasyreforged:anvil_shaped",
+  "pattern": [
+    "C",
+    "B"
+  ],
+  "key": {
+    "B": {
+      "neoforge:ingredient_type": "minefantasyreforged:material",
+      "items": "minefantasyreforged:bar",
+      "material": "pig_iron"
+    },
+    "C": "minefantasyreforged:coal_dust"
+  },
+  "result": {
+    "id": "minefantasyreforged:bar",
+    "components": {
+      "minecraft:custom_data": {
+        "mf_custom_materials": {
+          "main_material": "steel"
+        }
+      }
+    }
+  },
+  "tool_type": "hammer",
+  "craft_time": 5,
+  "tool_tier": 1,
+  "anvil_tier": 1,
+  "output_hot": true,
+  "research": "smelt_steel",
+  "skill": "artisanry",
+  "skill_xp": 1,
+  "vanilla_xp": 0.2
+}

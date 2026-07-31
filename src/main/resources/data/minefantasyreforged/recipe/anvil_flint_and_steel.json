@@ -1,0 +1,29 @@
+{
+  "type": "minefantasyreforged:anvil_shaped",
+  "pattern": [
+    "  F",
+    "SC ",
+    " S "
+  ],
+  "key": {
+    "S": {
+      "neoforge:ingredient_type": "minefantasyreforged:material",
+      "items": "minefantasyreforged:bar",
+      "material": "steel"
+    },
+    "C": "minecraft:coal",
+    "F": "minecraft:flint"
+  },
+  "result": {
+    "id": "minecraft:flint_and_steel"
+  },
+  "tool_type": "hammer",
+  "craft_time": 10,
+  "tool_tier": 0,
+  "anvil_tier": 0,
+  "output_hot": true,
+  "research": "none",
+  "skill": "none",
+  "skill_xp": 0,
+  "vanilla_xp": 0.3
+}

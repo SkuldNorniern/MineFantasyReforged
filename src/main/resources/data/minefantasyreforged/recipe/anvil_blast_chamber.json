@@ -1,0 +1,29 @@
+{
+  "type": "minefantasyreforged:anvil_shaped",
+  "pattern": [
+    "RP PR",
+    "RP PR",
+    "RP PR",
+    "RP PR"
+  ],
+  "key": {
+    "P": {
+      "neoforge:ingredient_type": "minefantasyreforged:material",
+      "items": "minefantasyreforged:plate",
+      "material": "iron"
+    },
+    "R": "minefantasyreforged:rivet"
+  },
+  "result": {
+    "id": "minefantasyreforged:blast_chamber"
+  },
+  "tool_type": "heavy_hammer",
+  "craft_time": 60,
+  "tool_tier": 2,
+  "anvil_tier": 2,
+  "output_hot": false,
+  "research": "blast_furnace",
+  "skill": "artisanry",
+  "skill_xp": 1,
+  "vanilla_xp": 0.55
+}
